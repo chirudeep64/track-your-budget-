@@ -49,6 +49,8 @@ You can modify the code to meet your specific requirements.
 -> Password : 12345678
 
 ✨Screenshots :
+this is family making page :
+       ![family join](https://github.com/chirudeep64/track-your-budget-/issues/1#issue-3107580252)
 
    1) Front-Page : 
   
