@@ -50,8 +50,9 @@ You can modify the code to meet your specific requirements.
 
 ✨Screenshots :
 this is family making page :
-       ![family join](https://github.com/chirudeep64/track-your-budget-/issues/1#issue-3107580252)
-
+       ![family join](https://github.com/chirudeep64/track-your-budget-/blob/main/Screenshot%202025-06-01%20225646.png)
+this is chating page :
+       ![chating page](https://github.com/chirudeep64/track-your-budget-/blob/main/Screenshot%202025-06-01%20230028.png)
    1) Front-Page : 
   
       ![front](https://user-images.githubusercontent.com/126175004/235640182-c909c2a9-1b71-44cd-a729-107224bb6eec.png)
