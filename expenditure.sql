@@ -3,14 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2023 at 11:46 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jun 01, 2025 at 06:36 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -20,6 +19,59 @@ SET time_zone = "+00:00";
 --
 -- Database: `expenditure`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat_messages`
+--
+
+CREATE TABLE `chat_messages` (
+  `id` int(11) NOT NULL,
+  `family_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `message` text DEFAULT NULL,
+  `image_path` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `chat_messages`
+--
+
+INSERT INTO `chat_messages` (`id`, `family_id`, `user_id`, `message`, `image_path`, `created_at`) VALUES
+(1, 11, 82, 'hi', NULL, '2025-05-29 17:34:23'),
+(2, 11, 82, 'ok', NULL, '2025-05-29 17:34:30'),
+(3, 11, 82, 'ok', '../Uploads/chat/chat_68384d56ee81a.png', '2025-05-29 17:34:38'),
+(4, 11, 82, 'ok', NULL, '2025-05-29 17:53:38'),
+(5, 11, 83, 'ok', NULL, '2025-05-29 17:56:05'),
+(6, 11, 83, 'what bro', NULL, '2025-05-29 17:56:22'),
+(7, 11, 83, 'what bro', NULL, '2025-05-29 17:56:44'),
+(8, 11, 82, '', '../Uploads/chat/chat_68385291e7.png', '2025-05-29 17:57:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `families`
+--
+
+CREATE TABLE `families` (
+  `id` int(11) NOT NULL,
+  `family_name` varchar(255) NOT NULL,
+  `security_code` varchar(10) NOT NULL,
+  `creator_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `families`
+--
+
+INSERT INTO `families` (`id`, `family_name`, `security_code`, `creator_id`) VALUES
+(2, 'Family1', 'SPIQI2HD', NULL),
+(3, 'Family2', 'ALYUNGDE', NULL),
+(7, 'Family3', 'DO7RM2FM', 78),
+(9, 'Family4', 'P9BEO2Y0', 81),
+(11, 'Family5', '44RKXU2L', 82);
 
 -- --------------------------------------------------------
 
@@ -36,22 +88,22 @@ CREATE TABLE `lending` (
   `description` varchar(250) DEFAULT NULL,
   `status` enum('pending','received') NOT NULL,
   `current_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `lending`
 --
 
 INSERT INTO `lending` (`id`, `UserId`, `name`, `date_of_lending`, `amount`, `description`, `status`, `current_time`) VALUES
-(10, 26, 'admin', '2023-03-16', 5000.00, 'hiii', 'pending', '2023-04-04 13:31:19'),
-(11, 30, 'shivmodi', '2023-03-31', 6000.00, 'llll', 'received', '2023-04-04 14:28:52'),
-(12, 26, 'king', '2023-03-22', 6000.00, 'hii bro give me my money 💵💵', 'pending', '2023-04-07 05:04:21'),
-(13, 31, 'Shiv Modi', '2023-04-05', 5000.00, 'friend ', 'pending', '2023-04-05 14:13:15'),
-(14, 31, 'Krsih Patel', '2023-04-04', 2000.00, 'Friends', 'received', '2023-04-05 14:13:48'),
-(15, 66, 'shivmodi', '2023-04-03', 1000.00, 'I want to take money from harsh', 'received', '2023-04-11 13:26:38'),
-(16, 67, 'Shiv Modi', '2023-04-05', 500.00, 'I want to take money from harsh', 'received', '2023-04-11 13:42:16'),
-(17, 68, 'krish patel', '2023-04-04', 500.00, 'i want to take from krish patel on 14/04/23', 'received', '2023-04-12 05:23:44'),
-(19, 68, 'shiv modi', '2023-04-12', 5000.00, 'i want to take money from shiv ', 'pending', '2023-04-12 05:28:56');
+(10, 26, 'User1', '2023-03-16', 5000.00, 'hiii', 'pending', '2023-04-04 13:31:19'),
+(11, 30, 'User2', '2023-03-31', 6000.00, 'llll', 'received', '2023-04-04 14:28:52'),
+(12, 26, 'User3', '2023-03-22', 6000.00, 'hii give me my money 💵💵', 'pending', '2023-04-07 05:04:21'),
+(13, 31, 'User4', '2023-04-05', 5000.00, 'friend', 'pending', '2023-04-05 14:13:15'),
+(14, 31, 'User5', '2023-04-04', 2000.00, 'Friends', 'received', '2023-04-05 14:13:48'),
+(15, 66, 'User6', '2023-04-03', 1000.00, 'I want to take money from user', 'received', '2023-04-11 13:26:38'),
+(16, 67, 'User7', '2023-04-05', 500.00, 'I want to take money from user', 'received', '2023-04-11 13:42:16'),
+(17, 68, 'User8', '2023-04-04', 500.00, 'i want to take from user on 14/04/23', 'received', '2023-04-12 05:23:44'),
+(19, 68, 'User9', '2023-04-12', 5000.00, 'i want to take money from user', 'pending', '2023-04-12 05:28:56');
 
 -- --------------------------------------------------------
 
@@ -64,20 +116,23 @@ CREATE TABLE `tblcategory` (
   `CategoryName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `UserId` int(11) NOT NULL,
   `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblcategory`
 --
 
 INSERT INTO `tblcategory` (`CategoryId`, `CategoryName`, `UserId`, `CreatedAt`) VALUES
-(73, 'Food ', 68, '2023-04-12 05:06:22'),
-(74, 'Games 🎮', 68, '2023-04-12 05:06:30'),
-(75, 'Entertainment 🍿', 68, '2023-04-12 05:06:46'),
-(76, 'Petrol ⛽⛽', 68, '2023-04-12 05:11:53'),
-(77, 'Electricity ⚡⚡', 68, '2023-04-12 05:13:04'),
-(78, 'Rent 🏠', 68, '2023-04-12 05:14:10'),
-(79, 'Entertainment', 68, '2023-04-12 10:27:52');
+(81, 'fruits', 74, '2025-05-28 10:15:35'),
+(82, 'bills', 74, '2025-05-28 10:17:40'),
+(85, 'chicken', 78, '2025-05-28 16:26:44'),
+(86, 'petrole', 78, '2025-05-28 16:27:37'),
+(87, 'petrol', 78, '2025-05-28 16:27:59'),
+(88, 'leaf vegetables', 78, '2025-05-28 16:28:55'),
+(89, 'hair cutting', 78, '2025-05-28 16:30:16'),
+(90, 'fruits', 79, '2025-05-28 16:40:34'),
+(91, 'chicken', 81, '2025-05-29 07:49:45'),
+(92, 'chicken', 82, '2025-05-29 08:43:02');
 
 -- --------------------------------------------------------
 
@@ -93,47 +148,17 @@ CREATE TABLE `tblexpense` (
   `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ExpenseCost` varchar(200) DEFAULT NULL,
   `Description` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `NoteDate` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `NoteDate` timestamp NULL DEFAULT current_timestamp(),
+  `product_name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tblexpense`
 --
 
-INSERT INTO `tblexpense` (`ID`, `UserId`, `ExpenseDate`, `CategoryId`, `category`, `ExpenseCost`, `Description`, `NoteDate`) VALUES
-(108, 30, '2023-04-01', 0, 'Food ', '5000', 'Food 😋😋😋 ', '2023-04-01 14:06:11'),
-(109, 30, '2023-04-01', 0, 'Entertainment 🎞️', '1000', '🍿🍿🍿 ', '2023-04-01 14:07:09'),
-(110, 30, '2023-04-01', 0, 'Entertainment 🎞️', '5000', 'xxxx ', '2023-04-01 14:30:27'),
-(111, 30, '2023-04-01', 0, 'Entertainment 🎞️', '200', 'xxxxx ', '2023-04-01 14:31:30'),
-(112, 30, '2023-04-01', 56, 'Entertainment 🎞️', '1000', 'dddd ', '2023-04-01 14:32:16'),
-(113, 30, '2023-04-01', 57, 'Grass', '2000', 'hii 🔴🔴 ', '2023-04-01 15:35:50'),
-(114, 30, '2023-04-01', 55, 'Food ', '5000', 'ccccccccc ', '2023-04-01 15:36:05'),
-(115, 30, '2023-04-01', 58, 'Entertainment 🎞️', '6000', 'shiv modi', '2023-04-01 16:29:04'),
-(116, 30, '2023-04-02', 57, 'Grass', '5000', 'dd ', '2023-04-02 08:17:59'),
-(117, 30, '2023-04-02', 59, 'Games', '5000', 'hiiiii ', '2023-04-02 08:40:55'),
-(122, 26, '2023-04-02', 60, 'Food ', '2000', '😋😋 ', '2023-04-02 18:12:56'),
-(123, 26, '2023-04-02', 61, 'Food 😋😋', '5000', '🌽🌽🌽 ', '2023-04-02 18:13:15'),
-(124, 31, '2023-04-05', 65, 'Games 🎮', '5000', 'PS5 🎮🎮🎮 ', '2023-04-05 14:07:09'),
-(125, 31, '2023-04-05', 63, 'Food ', '4000', 'food  ', '2023-04-05 14:07:32'),
-(126, 31, '2023-04-04', 64, 'Entertainment 🎞️', '10000', 'movie 🍿🍿 ', '2023-04-05 14:07:55'),
-(127, 31, '2023-04-03', 66, 'Tea ☕', '15000', 'tea month cost ', '2023-04-05 14:08:32'),
-(128, 31, '2023-04-02', 67, 'Bank 🏦🏦', '60000', 'bank money deposit ', '2023-04-05 14:09:23'),
-(129, 65, '2023-04-11', 68, 'Food', '500', 'Food Expense 🌽🌽 ', '2023-04-11 13:19:27'),
-(130, 66, '2023-04-11', 69, 'Food', '500', 'vegetables 🍅🍅 ', '2023-04-11 13:24:15'),
-(131, 66, '2023-04-11', 70, 'Games 🎮', '1000', 'PS5 ', '2023-04-11 13:25:06'),
-(132, 67, '2023-04-11', 71, 'Food', '600', 'Vegetables 🍅🍅 ', '2023-04-11 13:40:15'),
-(133, 67, '2023-04-11', 72, 'Games 🎮', '5000', 'Ps5 ', '2023-04-11 13:41:16'),
-(135, 68, '2023-04-11', 75, 'Entertainment 🍿', '6000', 'Movie time 🍿🍿 ', '2023-04-12 05:10:26'),
-(136, 68, '2023-04-12', 74, 'Games 🎮', '980', 'PS5  🎞️🎞️ ', '2023-04-12 05:11:01'),
-(137, 68, '2023-04-10', 76, 'Petrol ⛽⛽', '500', 'petrol  ', '2023-04-12 05:12:25'),
-(138, 68, '2023-04-12', 77, 'Electricity ⚡⚡', '2523', 'electricity billl 🔴 ', '2023-04-12 05:13:38'),
-(139, 68, '2023-04-10', 78, 'Rent 🏠', '15000', 'rent  ', '2023-04-12 05:14:25'),
-(141, 68, '2023-04-11', 75, 'Entertainment 🍿', '8000', 'movie ', '2023-04-12 05:17:10'),
-(142, 68, '2023-04-13', 74, 'Games 🎮', '5000', 'Ps6', '2023-04-12 05:18:07'),
-(143, 68, '2023-04-12', 78, 'Rent 🏠', '5000', 'rent  ', '2023-04-12 10:28:09'),
-(144, 68, '2023-04-18', 75, 'Entertainment 🍿', '500', 'Computer Organisation zero address instruction 1 address instruction ', '2023-04-18 08:45:06'),
-(145, 68, '2023-04-18', 75, 'Entertainment 🍿', '7', 'hii ', '2023-04-18 08:52:11'),
-(146, 68, '2023-04-18', 78, 'Rent 🏠', '20000', 'hiiii ', '2023-04-18 08:52:32');
+INSERT INTO `tblexpense` (`ID`, `UserId`, `ExpenseDate`, `CategoryId`, `category`, `ExpenseCost`, `Description`, `NoteDate`, `product_name`) VALUES
+(159, 81, '2025-05-29', 91, 'chicken', '120', 'wdq', '2025-05-29 07:49:54', '0'),
+(160, 82, '2025-05-29', 92, 'chicken', '342', 'kf', '2025-05-29 08:43:11', '0');
 
 -- --------------------------------------------------------
 
@@ -148,19 +173,63 @@ CREATE TABLE `users` (
   `phone` varchar(15) NOT NULL,
   `password` varchar(255) NOT NULL,
   `verification_code` varchar(12) NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime DEFAULT current_timestamp(),
+  `family_id` int(11) DEFAULT NULL,
+  `profile_image` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `verification_code`, `created_at`) VALUES
-(68, 'User', 'user@gmail.com', '9245657856', '$2y$10$JkvQ00olAxMBVQBUJ6kZp.rNtv0v5K7OChUeVvR04uAq8ZEFWDC2.', '4ebebb3c3d07', '2023-04-12 10:31:16');
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `verification_code`, `created_at`, `family_id`, `profile_image`) VALUES
+(81, 'User10', 'user10@gmail.com', '1234567890', '$2y$10$3k6Tu8fD8ZV30HLEusG8iOJDmG/r0QysAYoanGOK4BxR4 Ml3bd5Vji', '9840a77fc0e7', '2025-05-29 13:05:16', 9, NULL),
+(82, 'User11', 'user11@gmail.com', '0987654321', '$2y$10$Mj9ajxyXytTgx0JHfL4LAeyv6O1WQx6BWXNsm67N0yVu8NIDr7NIG', 'e92dfc181142', '2025-05-29 14:01:02', 11, 'images/profile_82_1748517664.png'),
+(83, 'User12', 'user12@gmail.com', '5432167890', '$2y$10$/lTMO8XNNDmQ179BTa5NkOpRpm4jEKkHXtnthKwjkXg2pIZHxwGwK', '6372e0b057a3', '2025-05-29 17:55:20', 11, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_families`
+--
+
+CREATE TABLE `user_families` (
+  `user_id` int(11) NOT NULL,
+  `family_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_families`
+--
+
+INSERT INTO `user_families` (`user_id`, `family_id`) VALUES
+(74, 2),
+(78, 7),
+(79, 7),
+(80, 7),
+(81, 9),
+(82, 11),
+(83, 11);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `chat_messages`
+--
+ALTER TABLE `chat_messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `family_id` (`family_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `families`
+--
+ALTER TABLE `families`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `security_code` (`security_code`),
+  ADD KEY `creator_id` (`creator_id`);
 
 --
 -- Indexes for table `lending`
@@ -186,11 +255,31 @@ ALTER TABLE `tblexpense`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`name`);
+  ADD UNIQUE KEY `username` (`name`),
+  ADD KEY `family_id` (`family_id`);
+
+--
+-- Indexes for table `user_families`
+--
+ALTER TABLE `user_families`
+  ADD PRIMARY KEY (`user_id`,`family_id`),
+  ADD KEY `family_id` (`family_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `chat_messages`
+--
+ALTER TABLE `chat_messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `families`
+--
+ALTER TABLE `families`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `lending`
@@ -202,29 +291,55 @@ ALTER TABLE `lending`
 -- AUTO_INCREMENT for table `tblcategory`
 --
 ALTER TABLE `tblcategory`
-  MODIFY `CategoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `CategoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `tblexpense`
 --
 ALTER TABLE `tblexpense`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `chat_messages`
+--
+ALTER TABLE `chat_messages`
+  ADD CONSTRAINT `chat_messages_ibfk_1` FOREIGN KEY (`family_id`) REFERENCES `families` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `chat_messages_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `families`
+--
+ALTER TABLE `families`
+  ADD CONSTRAINT `families_ibfk_1` FOREIGN KEY (`creator_id`) REFERENCES `users` (`id`);
+
+--
 -- Constraints for table `tblcategory`
 --
 ALTER TABLE `tblcategory`
   ADD CONSTRAINT `tblcategory_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`family_id`) REFERENCES `families` (`id`);
+
+--
+-- Constraints for table `user_families`
+--
+ALTER TABLE `user_families`
+  ADD CONSTRAINT `user_families_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `user_families_ibfk_2` FOREIGN KEY (`family_id`) REFERENCES `families` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
